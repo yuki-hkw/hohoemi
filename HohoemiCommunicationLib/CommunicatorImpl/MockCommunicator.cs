@@ -8,8 +8,6 @@ namespace HohoemiCommunicationLib.CommunicatorImpl
     {
         public event EventHandler<MessageArrivedArgs> OnMessageArrived;
 
-        private Timer _cyclicProc;
-
         public void Connect()
         {
         
@@ -17,12 +15,10 @@ namespace HohoemiCommunicationLib.CommunicatorImpl
 
         public void Disconnect()
         {
-            _cyclicProc.Dispose();
         }
 
         public void Init(Dictionary<string, string> properties)
         {
-             _cyclicProc = new Timer((s)=> { Send("self", DateTime.Now.ToString()); }, null, 1000, 100);
         }
 
         public int Send(string sender, string message)
