@@ -12,10 +12,10 @@ namespace Hohoemi
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += delegate { /* 捕まえきれなかった例外は無視 */ };
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new HohoemClientView());
-            AppDomain.CurrentDomain.UnhandledException += delegate { /* 捕まえきれなかった例外は無視 */ };
         }
     }
 }

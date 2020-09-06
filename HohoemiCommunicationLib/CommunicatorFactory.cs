@@ -1,5 +1,4 @@
-﻿using HohoemiCommunicationLib.CommunicatorImp;
-using HohoemiCommunicationLib.CommunicatorImpl;
+﻿using HohoemiCommunicationLib.CommunicatorImpl;
 using System;
 using System.Collections.Generic;
 using System.IO;

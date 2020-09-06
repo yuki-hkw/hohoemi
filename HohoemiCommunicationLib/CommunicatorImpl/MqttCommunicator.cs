@@ -7,7 +7,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System.Threading.Tasks;
 
-namespace HohoemiCommunicationLib.CommunicatorImp
+namespace HohoemiCommunicationLib.CommunicatorImpl
 {
     internal class MqttCommunicator : ICommunicator
     {
