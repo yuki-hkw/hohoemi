@@ -32,7 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HohoemClientView));
             this._cyclicTimer = new System.Windows.Forms.Timer(this.components);
             this._toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this._showSenderButton = new System.Windows.Forms.ToolStripButton();
+            this._colorckerButton = new System.Windows.Forms.ToolStripButton();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,22 +44,33 @@
             // _toolStrip
             // 
             this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this._showSenderButton,
+            this._colorckerButton});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
             this._toolStrip.Size = new System.Drawing.Size(784, 25);
             this._toolStrip.TabIndex = 0;
             this._toolStrip.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // _showSenderButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "コメントウィンドウを表示";
-            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            this._showSenderButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._showSenderButton.Image = ((System.Drawing.Image)(resources.GetObject("_showSenderButton.Image")));
+            this._showSenderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._showSenderButton.Name = "_showSenderButton";
+            this._showSenderButton.Size = new System.Drawing.Size(23, 22);
+            this._showSenderButton.Text = "コメントウィンドウを表示";
+            this._showSenderButton.Click += new System.EventHandler(this.ShowSenderButton_Click);
+            // 
+            // _colorckerButton
+            // 
+            this._colorckerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._colorckerButton.Image = ((System.Drawing.Image)(resources.GetObject("_colorckerButton.Image")));
+            this._colorckerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._colorckerButton.Name = "_colorckerButton";
+            this._colorckerButton.Size = new System.Drawing.Size(23, 22);
+            this._colorckerButton.Text = "文字色変更";
+            this._colorckerButton.Click += new System.EventHandler(this.ColorckerButton_Click);
             // 
             // HohoemClientView
             // 
@@ -86,7 +98,8 @@
 
         private System.Windows.Forms.Timer _cyclicTimer;
         private System.Windows.Forms.ToolStrip _toolStrip;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton _showSenderButton;
+        private System.Windows.Forms.ToolStripButton _colorckerButton;
     }
 }
 

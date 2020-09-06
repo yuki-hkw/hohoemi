@@ -12,6 +12,7 @@ namespace Hohoemi.View
         private const int COMMENT_FLOW_SPEED = 20; /* px/timer_tick*/
 
         private HohoemiClientSenderView _senderView;
+        private Color _commentColor = Color.Black;
 
         public HohoemClientView()
         {
@@ -65,6 +66,7 @@ namespace Hohoemi.View
                     Text = message,
                     AutoSize = true,
                     Font = new Font("メイリオ", 20),
+                    ForeColor = _commentColor
                 };
 
                 comment.Location = GetCommentInitialLocation(comment.Size);
@@ -108,7 +110,7 @@ namespace Hohoemi.View
             }
         }
 
-        private void ToolStripButton1_Click(object sender, EventArgs e)
+        private void ShowSenderButton_Click(object sender, EventArgs e)
         {
             if (_senderView.IsDisposed)
             {
@@ -133,6 +135,24 @@ namespace Hohoemi.View
             _senderView.Show(this);
             _senderView.Location = new Point(Location.X, Location.Y + Height);
             _senderView.Visible = true;
+        }
+
+        private void ColorckerButton_Click(object sender, EventArgs e)
+        {
+            var colorDialog = new ColorDialog();
+
+            if(colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                _commentColor = colorDialog.Color;
+
+                lock(this)
+                {
+                    foreach(Label l in from Control c in Controls where c is Label select c)
+                    {
+                        l.ForeColor = _commentColor;
+                    }
+                }
+            }
         }
     }
 }
