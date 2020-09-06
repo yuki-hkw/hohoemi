@@ -1,0 +1,3 @@
+[submodule "m2mqtt"]
+	path = m2mqtt
+	url = https://github.com/eclipse/paho.mqtt.m2mqtt.git
