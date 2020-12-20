@@ -15,7 +15,7 @@ namespace Hohoemi
             AppDomain.CurrentDomain.UnhandledException += delegate { /* 捕まえきれなかった例外は無視 */ };
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HohoemClientView());
+            Application.Run(new HohoemiClientSenderView());
         }
     }
 }

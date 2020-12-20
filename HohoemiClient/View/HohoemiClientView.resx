@@ -120,31 +120,4 @@
   <metadata name="_cyclicTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>171, 17</value>
   </metadata>
-  <metadata name="_toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>288, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_showSenderButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB6SURBVDhPnZLRCsAgCEX9kw32/7CP2vs+waXLWGqZE07Q
-        xXvoIcAyAPCL2n0v93WmkB4LnHCK2reCY9unDAVZjKAGIaFAP1lyYSjIYgQ1CJkK9PM9jOArWUV63Vf2
-        Fj1aWQQ0WtAtDeAen2Uo0OWVMYJMmaYTZMuIiA+Kxmu/mZUGlwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="_colorckerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH9SURBVDhPjVMxiNRQEB3BEISDeI1phJRbWKQRgoIEC28L
-        kZQpDywulaSwWKxsxMA1ayNBUMJhkUoWsViOu2Wx8O6wMI2w3QZtlqti5V6x5/Nl/99zs67gwCOZ/9+8
-        +TN/vmDFpuUQWRzCdx1YlgWr5SGIEvSLSjOatiRQIgsciCHoPBIUrwXVOyLn/xNBfF1guhH6E03XpgSq
-        IbYdQfBQMN3nksZsz8AZRRZ+9VTgGy10innU3LhTInEF24//EOd4aeHHbZu4ip9L69MXAs9sI9cVSZX6
-        sO+pzKeDyxgcavKbDSVwx8LZkkCNCUs0w74SSFqCjPViYOLG0QauHV3BqwNFPH9/CTMddP6VJY35PaH/
-        QZAYPlKeQtxNwagmHRi4Wwt8MjHQQcuYlcQ3gkK1X9xnz3oUcG41G/cv/PrM4BFP8FH5dRlOZ/T/AquY
-        sOlOTIHIFnR315Mu8DaD9wCwdrqo9FpdQjuvr3HSQ+iYEJEGYt75QmC6y0xbJG8V6Om1dNNFwqGit2oV
-        8raJgDXiJAK+d4Chj+PnObqZpwSfCWw/JXOdQD+EeZNTV2ca65E7DS9Ogz0OncHspdpaL6AHC/vMOE6B
-        L7bKzHmJbQvBYgxpfwugj9DkoLAHi9upGJhTtGV5iIfNV7lGgMbGRq6tGmrWT7qNOC/mNTcN+A0SwMp7
-        5J+H5QAAAABJRU5ErkJggg==
-</value>
-  </data>
 </root>

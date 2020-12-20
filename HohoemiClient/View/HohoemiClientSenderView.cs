@@ -1,5 +1,6 @@
 ﻿using Hohoemi.ViewModel;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Hohoemi.View
@@ -8,13 +9,34 @@ namespace Hohoemi.View
     {
         private readonly int DefaultHeight;
 
+        private readonly HohoemClientView _view = new HohoemClientView();
+
+        private Color _commentColor = Color.Black;
+
         public HohoemiClientSenderView()
         {
             InitializeComponent();
 
             AcceptButton = _sendButton;
+            DefaultHeight = Size.Height;
 
-            DefaultHeight = Height;
+            _view.Show();
+
+            try
+            {
+                HohoemiClientViewModel.Init();
+                HohoemiClientViewModel.OnMessageArrived += AppendMessage;
+            }
+            catch
+            {
+                MessageBox.Show("初期化に失敗しました。" + Environment.NewLine + Environment.CurrentDirectory + "\\hohoemi.configを確認してください。");
+                Application.Exit();
+            }
+        }
+
+        private void AppendMessage(object sendr, string message)
+        {
+            _view.AppendMessage(message, _commentColor);
         }
 
         private void SendButtonClick(object sender, EventArgs e)
@@ -23,7 +45,7 @@ namespace Hohoemi.View
             _sendButton.Enabled = false;
             _commentText.Enabled = false;
 
-            if(HohoemiClientViewModel.Send(string.Empty, _commentText.Text))
+            if (HohoemiClientViewModel.Send(string.Empty, _commentText.Text))
             {
                 // 成功したらコメント空にする
                 _commentText.Text = string.Empty;
@@ -42,6 +64,37 @@ namespace Hohoemi.View
         private void HohoemiClientSenderView_Resize(object sender, EventArgs e)
         {
             Height = DefaultHeight;
+        }
+
+        private void ColorckerButton_Click(object sender, EventArgs e)
+        {
+            var colorDialog = new ColorDialog();
+
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                _commentColor = colorDialog.Color;
+
+                _view.ChangeCommentColor(_commentColor);
+            }
+        }
+
+        private void HohoemiClientSenderView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            HohoemiClientViewModel.Disconnect();
+
+            _view.Close();
+        }
+
+        private void DisplaySelectButton_Click(object sender, EventArgs e)
+        {
+            var displaySelectDlg = new DisplaySetting()
+            {
+                SelectedScreen = _view.SelectedScreen
+            };
+            if (displaySelectDlg.ShowDialog() == DialogResult.OK)
+            {
+                _view.UpdateDrawnScreen(displaySelectDlg.SelectedScreen);
+            }
         }
     }
 }
