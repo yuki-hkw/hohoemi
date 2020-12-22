@@ -107,7 +107,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "HohoemiClientSenderView";
-            this.ShowInTaskbar = false;
             this.Text = "HohoemiClientSender";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HohoemiClientSenderView_FormClosing);
             this.Resize += new System.EventHandler(this.HohoemiClientSenderView_Resize);

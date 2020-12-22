@@ -46,6 +46,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HohoemClientView";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "HohoemiClientViewer";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.ScrollBar;
