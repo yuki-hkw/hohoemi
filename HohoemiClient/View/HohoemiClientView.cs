@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Hohoemi.ViewModel;
 
 namespace Hohoemi.View
 {
@@ -18,16 +19,26 @@ namespace Hohoemi.View
         {
             InitializeComponent();
 
-            UpdateDrawnScreen(Screen.PrimaryScreen);
+            UpdateDrawnScreen(ScreenViewModel.Selected);
+
+            ScreenViewModel.OnSelectedScreenChanged += OnScreenChanged;
         }
 
-        public void UpdateDrawnScreen(Screen screen)
+        private void OnScreenChanged(Screen after)
         {
-            _selectedScreen = screen;
+            Invoke(new Action(() =>
+            {
+                UpdateDrawnScreen(after);
+            }));
+        }
 
-            Location = new Point(_selectedScreen.Bounds.X, _selectedScreen.Bounds.Y);
-            Width = _selectedScreen.Bounds.Width;
-            Height = _selectedScreen.Bounds.Height;
+        private void UpdateDrawnScreen(Screen screen)
+        {
+                _selectedScreen = screen;
+
+                Location = new Point(_selectedScreen.Bounds.X, _selectedScreen.Bounds.Y);
+                Width = _selectedScreen.Bounds.Width;
+                Height = _selectedScreen.Bounds.Height;
         }
 
         private void HohoemClientView_Load(object sender, EventArgs e)
@@ -82,7 +93,7 @@ namespace Hohoemi.View
 
             // 初期ポジション
             int x = -commentSize.Width;
-            int y = _selectedScreen.Bounds.Y;
+            int y = 0;
 
             // コメントがあった
             if (lastCmnt != null)
@@ -92,7 +103,7 @@ namespace Hohoemi.View
                 // 今の表示座標にコメントの高さを加算して文字切れしないか確認
                 if ((y + commentSize.Height) > _selectedScreen.Bounds.Height)
                 {
-                    y = _selectedScreen.Bounds.Y;
+                    y = 0;
                 }
             }
 

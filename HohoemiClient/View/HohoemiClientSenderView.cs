@@ -87,14 +87,7 @@ namespace Hohoemi.View
 
         private void DisplaySelectButton_Click(object sender, EventArgs e)
         {
-            var displaySelectDlg = new DisplaySetting()
-            {
-                SelectedScreen = _view.SelectedScreen
-            };
-            if (displaySelectDlg.ShowDialog() == DialogResult.OK)
-            {
-                _view.UpdateDrawnScreen(displaySelectDlg.SelectedScreen);
-            }
+            new DisplaySetting().ShowDialog();
         }
     }
 }

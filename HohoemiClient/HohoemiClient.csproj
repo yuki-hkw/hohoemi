@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModel\HohoemiClientViewModel.cs" />
+    <Compile Include="ViewModel\ScreenViewModel.cs" />
     <Compile Include="View\DisplaySetting.cs">
       <SubType>Form</SubType>
     </Compile>
