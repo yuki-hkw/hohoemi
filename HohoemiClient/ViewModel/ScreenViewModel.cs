@@ -1,57 +1,134 @@
-﻿using System;
+﻿using Hohoemi.Model;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
 namespace Hohoemi.ViewModel
 {
-    public static class ScreenViewModel
+    public class ScreenViewModel
     {
-        public static Screen Selected { private set; get; } = Screen.PrimaryScreen;
+        public Action<Screen> OnChangeCurrentScreen = delegate { };
 
-        public static event Action<Screen> OnSelectedScreenChanged = delegate { };
+        public ScreenViewModel()
+        {
+            ScreenModel.Object.OnScreenChanged += Notify;
+        }
 
-    public static int SelectedIndex
+        private void Notify(Screen selected)
+        {
+            OnChangeCurrentScreen(selected);
+        }
+
+        public void Update(int index)
+        {
+            try
+            {
+                ScreenModel.Object.CurrentScreen = ScreenModel.Object.AllScreens[index];
+            }
+            catch
+            {
+                // 自分で選んでおいて、ディスプレイを抜くやつがいるらしい
+                // 何もしない。
+            }
+        }
+
+        // CurrentはModelにまで設定されているものを示す
+        public Screen CurrentScreen
         {
             get
             {
-                int i = 0;
+                var screen = ScreenModel.Object.CurrentScreen;
 
-                for (; i < Screen.AllScreens.Length; ++i)
+                if (screen != null)
                 {
-                    if(Screen.AllScreens[i].DeviceName.Equals(Selected.DeviceName))
-                    {
-                        break;
-                    }
+                    return screen;
                 }
+                else
+                {
+                    // 画面にnullはきついのでDefaultを返しておく
+                    return ScreenModel.Default;
+                }
+            }
+        }
 
-                return i;
+
+        // Selectedは今の画面で選択されているものを示す
+        private Screen _selected = ScreenModel.Object.CurrentScreen;
+
+        public int SelectedIndex
+        {
+            get
+            {
+                int index = SearchSelectedScreenIndex(_selected);
+
+
+                if (index > 0)
+                {
+                    return index;
+                }
+                else
+                {
+                    // ここに来た場合、ディスプレイの取り外しとかで、記憶していたディスプレイがなくなっている
+                    // デフォルトスクリーンのindexを返す(モデルの値は変えない)
+                    return SearchSelectedScreenIndex(ScreenModel.Default);
+                }
             }
 
             set
             {
-                Selected = Screen.AllScreens[value];
-
-                OnSelectedScreenChanged(Selected);
+                try
+                {
+                    _selected = ScreenModel.Object.AllScreens[value];
+                }
+                catch
+                {
+                    // ここに来た場合、ディスプレイの取り外しとかで、記憶していたディスプレイがなくなっている
+                    // Defaultを選択状態にする
+                    _selected = ScreenModel.Default;
+                }
             }
         }
 
-        public static string[] DisplayNames 
-        { 
+        private int SearchSelectedScreenIndex(Screen selected)
+        {
+            for (int i = 0; i < Screen.AllScreens.Length; ++i)
+            {
+                if (ScreenModel.Object.AllScreens[i].Equals(selected))
+                {
+                    return i;
+                }
+            }
+
+            // ここに来たときは、引数が存在しないScreenオブジェクトだった場合
+            return -1;
+        }
+
+        public IList<string> DisplayNames
+        {
             get
             {
-                return (from s in Screen.AllScreens select s.DeviceName).ToArray();
+                return (from s in ScreenModel.Object.AllScreens select s.DeviceName).ToArray();
             }
         }
 
-        public static string ScreenDescription
-        { 
+        public string ScreenDescription
+        {
             get
             {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"Width  = {Selected.Bounds.Width}");
-                sb.AppendLine($"Height = {Selected.Bounds.Height}");
-                return sb.ToString();
+                // ディスプレイ抜き差しによってSelectedがnullになっている可能性があるのでチェック
+                if (_selected != null)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine($"Width  = {_selected.Bounds.Width}");
+                    sb.AppendLine($"Height = {_selected.Bounds.Height}");
+                    return sb.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
     }

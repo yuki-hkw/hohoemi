@@ -1,6 +1,7 @@
 ﻿using Hohoemi.ViewModel;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Hohoemi.View
@@ -9,7 +10,11 @@ namespace Hohoemi.View
     {
         private readonly int DefaultHeight;
 
-        private readonly HohoemClientView _view = new HohoemClientView();
+        private readonly HohoemClientView _clntView = new HohoemClientView();
+
+        private readonly HohoemiCommentViewer _cmntView = new HohoemiCommentViewer();
+
+        private readonly HohoemiClientSenderViewModel _sndVm = new HohoemiClientSenderViewModel();
 
         private Color _commentColor = Color.Black;
 
@@ -20,23 +25,8 @@ namespace Hohoemi.View
             AcceptButton = _sendButton;
             DefaultHeight = Size.Height;
 
-            _view.Show();
-
-            try
-            {
-                HohoemiClientViewModel.Init();
-                HohoemiClientViewModel.OnMessageArrived += AppendMessage;
-            }
-            catch
-            {
-                MessageBox.Show("初期化に失敗しました。" + Environment.NewLine + Environment.CurrentDirectory + "\\hohoemi.configを確認してください。");
-                Application.Exit();
-            }
-        }
-
-        private void AppendMessage(object sendr, string message)
-        {
-            _view.AppendMessage(message, _commentColor);
+            _clntView.Show();
+            _cmntView.Hide();
         }
 
         private void SendButtonClick(object sender, EventArgs e)
@@ -45,7 +35,10 @@ namespace Hohoemi.View
             _sendButton.Enabled = false;
             _commentText.Enabled = false;
 
-            if (HohoemiClientViewModel.Send(string.Empty, _commentText.Text))
+            // 今のところ、ユーザ名はPCユーザ名を使う
+            string user = Path.GetFileName(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+
+            if (_sndVm.Send(user, _commentText.Text))
             {
                 // 成功したらコメント空にする
                 _commentText.Text = string.Empty;
@@ -74,20 +67,32 @@ namespace Hohoemi.View
             {
                 _commentColor = colorDialog.Color;
 
-                _view.ChangeCommentColor(_commentColor);
+                _clntView.ChangeCommentColor(_commentColor);
             }
         }
 
         private void HohoemiClientSenderView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            HohoemiClientViewModel.Disconnect();
+            _clntView.Close();
 
-            _view.Close();
+            _cmntView.Close();
         }
 
         private void DisplaySelectButton_Click(object sender, EventArgs e)
         {
             new DisplaySetting().ShowDialog();
+        }
+
+        private void CommentViewerButton_Click(object sender, EventArgs e)
+        {
+            if (!_cmntView.Visible)
+            {
+                _cmntView.Show();
+            }
+            else
+            {
+                _cmntView.Hide();
+            }
         }
     }
 }

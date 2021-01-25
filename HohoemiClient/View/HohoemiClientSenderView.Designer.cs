@@ -35,6 +35,7 @@
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._displaySelectButton = new System.Windows.Forms.ToolStripButton();
             this._colorckerButton = new System.Windows.Forms.ToolStripButton();
+            this._commentViewerButton = new System.Windows.Forms.ToolStripLabel();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +71,8 @@
             // 
             this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._displaySelectButton,
-            this._colorckerButton});
+            this._colorckerButton,
+            this._commentViewerButton});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
             this._toolStrip.Size = new System.Drawing.Size(554, 25);
@@ -95,6 +97,13 @@
             this._colorckerButton.Size = new System.Drawing.Size(23, 22);
             this._colorckerButton.Text = "文字色変更";
             this._colorckerButton.Click += new System.EventHandler(this.ColorckerButton_Click);
+            // 
+            // _commentViewerButton
+            // 
+            this._commentViewerButton.Name = "_commentViewerButton";
+            this._commentViewerButton.Size = new System.Drawing.Size(19, 22);
+            this._commentViewerButton.Text = "👀";
+            this._commentViewerButton.Click += new System.EventHandler(this.CommentViewerButton_Click);
             // 
             // HohoemiClientSenderView
             // 
@@ -125,6 +134,7 @@
         private System.Windows.Forms.ToolStrip _toolStrip;
         private System.Windows.Forms.ToolStripButton _displaySelectButton;
         private System.Windows.Forms.ToolStripButton _colorckerButton;
+        private System.Windows.Forms.ToolStripLabel _commentViewerButton;
     }
 }
 

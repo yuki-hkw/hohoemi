@@ -6,29 +6,21 @@ namespace Hohoemi.View
 {
     public partial class DisplaySetting : Form
     {
-        public Screen SelectedScreen
-        {
-            get { return ScreenViewModel.Selected; }
-        }
+        private readonly ScreenViewModel _scrnVm = new ScreenViewModel();
 
         public DisplaySetting()
         {
             InitializeComponent();
 
-            _screenNames.Items.AddRange(ScreenViewModel.DisplayNames);
-            _screenNames.SelectedIndex = ScreenViewModel.SelectedIndex;
+            _displayDescription.DataBindings.Add("Text", _scrnVm, "ScreenDescription", false, DataSourceUpdateMode.OnPropertyChanged);
+            _displayNames.DataSource = _scrnVm.DisplayNames;
+            _displayNames.DataBindings.Add("SelectedIndex", _scrnVm, "SelectedIndex", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void OkButtonClick(object sender, EventArgs e)
         {
-            ScreenViewModel.SelectedIndex = _screenNames.SelectedIndex;
-            
+            _scrnVm.Update(_displayNames.SelectedIndex);
             Close();
-        }
-
-        private void _screenNames_SelectedItemChanged(object sender, EventArgs e)
-        {
-            _displayDescription.Text = ScreenViewModel.ScreenDescription;
         }
     }
 }

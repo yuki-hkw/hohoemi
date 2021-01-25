@@ -29,11 +29,16 @@ namespace Hohoemi.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplaySetting));
             this._okButon = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this._displayDescription = new System.Windows.Forms.TextBox();
-            this._screenNames = new System.Windows.Forms.DomainUpDown();
+            this.screenViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._displayNames = new System.Windows.Forms.ComboBox();
+            this.displayNamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.screenViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.displayNamesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _okButon
@@ -68,23 +73,29 @@ namespace Hohoemi.View
             this._displayDescription.Size = new System.Drawing.Size(316, 62);
             this._displayDescription.TabIndex = 3;
             // 
-            // _screenNames
+            // screenViewModelBindingSource
             // 
-            this._screenNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._screenNames.Location = new System.Drawing.Point(117, 9);
-            this._screenNames.Name = "_screenNames";
-            this._screenNames.Size = new System.Drawing.Size(214, 19);
-            this._screenNames.TabIndex = 5;
-            this._screenNames.Text = "domainUpDown1";
-            this._screenNames.SelectedItemChanged += new System.EventHandler(this._screenNames_SelectedItemChanged);
+            this.screenViewModelBindingSource.DataSource = typeof(Hohoemi.ViewModel.ScreenViewModel);
+            // 
+            // _displayNames
+            // 
+            this._displayNames.FormattingEnabled = true;
+            this._displayNames.Location = new System.Drawing.Point(123, 5);
+            this._displayNames.Name = "_displayNames";
+            this._displayNames.Size = new System.Drawing.Size(208, 20);
+            this._displayNames.TabIndex = 6;
+            // 
+            // displayNamesBindingSource
+            // 
+            this.displayNamesBindingSource.DataMember = "DisplayNames";
+            this.displayNamesBindingSource.DataSource = this.screenViewModelBindingSource;
             // 
             // DisplaySetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(343, 132);
-            this.Controls.Add(this._screenNames);
+            this.Controls.Add(this._displayNames);
             this.Controls.Add(this._displayDescription);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._okButon);
@@ -95,6 +106,8 @@ namespace Hohoemi.View
             this.Name = "DisplaySetting";
             this.ShowInTaskbar = false;
             this.Text = "ディスプレイ設定";
+            ((System.ComponentModel.ISupportInitialize)(this.screenViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.displayNamesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,6 +118,8 @@ namespace Hohoemi.View
         private System.Windows.Forms.Button _okButon;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _displayDescription;
-        private System.Windows.Forms.DomainUpDown _screenNames;
+        private System.Windows.Forms.ComboBox _displayNames;
+        private System.Windows.Forms.BindingSource screenViewModelBindingSource;
+        private System.Windows.Forms.BindingSource displayNamesBindingSource;
     }
 }
