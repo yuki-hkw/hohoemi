@@ -1,19 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace HohoemiCommunicationLib.CommunicatorImpl
 {
     internal class MockCommunicator : ICommunicator
     {
+        // 受信スレッドを模擬
+        // タイマーのスレッドから通知させることで、GUIスレッドの操作有無をデバッグ中に確認できるようにする
+        private Timer _pollingTimer = new Timer();
+
+        private List<Tuple<string, string>> _messageBuff = new List<Tuple<string, string>>();
+
         public event EventHandler<MessageArrivedArgs> OnMessageArrived;
 
         public void Connect()
         {
-        
+            _pollingTimer.AutoReset = true;
+            _pollingTimer.Interval = 100; /* ms */
+            _pollingTimer.Enabled = true;
+            _pollingTimer.Elapsed += Notify;
+        }
+
+        private void Notify(object sender, ElapsedEventArgs e)
+        {
+            lock (this)
+            {
+                foreach(var msg in _messageBuff)
+                {
+                    OnMessageArrived(this, new MessageArrivedArgs(msg.Item1, msg.Item2));
+                }
+
+                _messageBuff.Clear();
+            }
         }
 
         public void Disconnect()
         {
+            _pollingTimer.Dispose();
         }
 
         public void Init(Dictionary<string, string> properties)
@@ -22,7 +46,10 @@ namespace HohoemiCommunicationLib.CommunicatorImpl
 
         public int Send(string sender, string message)
         {
-            OnMessageArrived(this, new MessageArrivedArgs(sender, message));
+            lock(this)
+            {
+                _messageBuff.Add(new Tuple<string, string>(sender, message));
+            }
 
             return 1;
         }
