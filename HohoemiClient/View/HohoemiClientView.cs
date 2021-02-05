@@ -17,6 +17,8 @@ namespace Hohoemi.View
 
         private Color _commentColor = Color.Black;
 
+        private bool _isCommentVisible = true;
+
         private HohoemiClientViewModel _clntVM = new HohoemiClientViewModel();
         public HohoemClientView()
         {
@@ -81,7 +83,8 @@ namespace Hohoemi.View
                     Text = message,
                     AutoSize = true,
                     Font = new Font("メイリオ", 20),
-                    ForeColor = _commentColor
+                    ForeColor = _commentColor,
+                    Visible = _isCommentVisible
                 };
 
                 comment.Location = GetCommentInitialLocation(comment.Size);
@@ -143,6 +146,8 @@ namespace Hohoemi.View
         {
             lock (this)
             {
+                _isCommentVisible = visible;
+
                 foreach (Label l in from Control c in Controls where c is Label select c)
                 {
                     l.Visible = visible;
