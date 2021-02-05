@@ -35,7 +35,7 @@
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._displaySelectButton = new System.Windows.Forms.ToolStripButton();
             this._colorckerButton = new System.Windows.Forms.ToolStripButton();
-            this._commentViewerButton = new System.Windows.Forms.ToolStripLabel();
+            this._commentViewerButton = new System.Windows.Forms.ToolStripButton();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +85,7 @@
             this._displaySelectButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._displaySelectButton.Name = "_displaySelectButton";
             this._displaySelectButton.Size = new System.Drawing.Size(23, 22);
-            this._displaySelectButton.Text = "コメントウィンドウを表示";
+            this._displaySelectButton.Text = "ディスプレイ選択";
             this._displaySelectButton.Click += new System.EventHandler(this.DisplaySelectButton_Click);
             // 
             // _colorckerButton
@@ -95,14 +95,17 @@
             this._colorckerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._colorckerButton.Name = "_colorckerButton";
             this._colorckerButton.Size = new System.Drawing.Size(23, 22);
-            this._colorckerButton.Text = "文字色変更";
+            this._colorckerButton.Text = "コメント色変更";
             this._colorckerButton.Click += new System.EventHandler(this.ColorckerButton_Click);
             // 
             // _commentViewerButton
             // 
+            this._commentViewerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._commentViewerButton.Image = ((System.Drawing.Image)(resources.GetObject("_commentViewerButton.Image")));
+            this._commentViewerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._commentViewerButton.Name = "_commentViewerButton";
-            this._commentViewerButton.Size = new System.Drawing.Size(19, 22);
-            this._commentViewerButton.Text = "👀";
+            this._commentViewerButton.Size = new System.Drawing.Size(23, 22);
+            this._commentViewerButton.Text = "コメントビューア表示";
             this._commentViewerButton.Click += new System.EventHandler(this.CommentViewerButton_Click);
             // 
             // HohoemiClientSenderView
@@ -134,7 +137,7 @@
         private System.Windows.Forms.ToolStrip _toolStrip;
         private System.Windows.Forms.ToolStripButton _displaySelectButton;
         private System.Windows.Forms.ToolStripButton _colorckerButton;
-        private System.Windows.Forms.ToolStripLabel _commentViewerButton;
+        private System.Windows.Forms.ToolStripButton _commentViewerButton;
     }
 }
 
