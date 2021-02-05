@@ -36,6 +36,7 @@
             this._displaySelectButton = new System.Windows.Forms.ToolStripButton();
             this._colorckerButton = new System.Windows.Forms.ToolStripButton();
             this._commentViewerButton = new System.Windows.Forms.ToolStripButton();
+            this._commentVisbleButton = new System.Windows.Forms.ToolStripButton();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +73,8 @@
             this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._displaySelectButton,
             this._colorckerButton,
-            this._commentViewerButton});
+            this._commentViewerButton,
+            this._commentVisbleButton});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
             this._toolStrip.Size = new System.Drawing.Size(554, 25);
@@ -108,6 +110,16 @@
             this._commentViewerButton.Text = "コメントビューア表示";
             this._commentViewerButton.Click += new System.EventHandler(this.CommentViewerButton_Click);
             // 
+            // _commentVisbleButton
+            // 
+            this._commentVisbleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._commentVisbleButton.Image = ((System.Drawing.Image)(resources.GetObject("_commentVisbleButton.Image")));
+            this._commentVisbleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._commentVisbleButton.Name = "_commentVisbleButton";
+            this._commentVisbleButton.Size = new System.Drawing.Size(23, 22);
+            this._commentVisbleButton.Text = "コメント表示切替";
+            this._commentVisbleButton.Click += new System.EventHandler(this.CommentVisibleButton_Click);
+            // 
             // HohoemiClientSenderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -138,6 +150,7 @@
         private System.Windows.Forms.ToolStripButton _displaySelectButton;
         private System.Windows.Forms.ToolStripButton _colorckerButton;
         private System.Windows.Forms.ToolStripButton _commentViewerButton;
+        private System.Windows.Forms.ToolStripButton _commentVisbleButton;
     }
 }
 

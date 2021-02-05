@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using HohoemiClientViewer.Properties;
 
 namespace Hohoemi.View
 {
@@ -18,6 +19,8 @@ namespace Hohoemi.View
 
         private Color _commentColor = Color.Black;
 
+        private bool _isCommentVisible = true;
+
         public HohoemiClientSenderView()
         {
             InitializeComponent();
@@ -27,6 +30,8 @@ namespace Hohoemi.View
 
             _clntView.Show();
             _cmntView.Hide();
+
+            UpdateCommentVisibleButton(_isCommentVisible);
         }
 
         private void SendButtonClick(object sender, EventArgs e)
@@ -93,6 +98,27 @@ namespace Hohoemi.View
             {
                 _cmntView.Hide();
             }
+        }
+
+        private void UpdateCommentVisibleButton(bool visible)
+        {
+            if (visible)
+            {
+                _commentVisbleButton.Image = Resources.commentOn;
+            }
+            else
+            {
+                _commentVisbleButton.Image = Resources.commentOff;
+            }
+        }
+
+        private void CommentVisibleButton_Click(object sender, EventArgs e)
+        {
+            _isCommentVisible = !_isCommentVisible;
+
+            UpdateCommentVisibleButton(_isCommentVisible);
+
+            _clntView.ChangeCommentVisibility(_isCommentVisible);
         }
     }
 }

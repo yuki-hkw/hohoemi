@@ -138,5 +138,16 @@ namespace Hohoemi.View
                 }
             }
         }
+
+        public void ChangeCommentVisibility(bool visible)
+        {
+            lock (this)
+            {
+                foreach (Label l in from Control c in Controls where c is Label select c)
+                {
+                    l.Visible = visible;
+                }
+            }
+        }
     }
 }
