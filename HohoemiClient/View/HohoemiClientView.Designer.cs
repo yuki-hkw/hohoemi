@@ -30,11 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this._cyclicTimer = new System.Windows.Forms.Timer(this.components);
+            this._cyclicTimer_pic = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // _cyclicTimer
             // 
             this._cyclicTimer.Tick += new System.EventHandler(this.CyclicTimerTick);
+            // 
+            // _cyclicTimer_pic
+            // 
+            this._cyclicTimer_pic.Tick += new System.EventHandler(this.CyclicTimerTick_pic);
             // 
             // HohoemClientView
             // 
@@ -60,6 +65,7 @@
         #endregion
 
         private System.Windows.Forms.Timer _cyclicTimer;
+        private System.Windows.Forms.Timer _cyclicTimer_pic;
     }
 }
 

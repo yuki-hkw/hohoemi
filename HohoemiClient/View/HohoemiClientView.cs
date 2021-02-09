@@ -51,6 +51,8 @@ namespace Hohoemi.View
         private void HohoemClientView_Load(object sender, EventArgs e)
         {
             _cyclicTimer.Start();
+            _cyclicTimer_pic.Interval = 20;
+            _cyclicTimer_pic.Start();
         }
 
         private void CyclicTimerTick(object sender, EventArgs e)
@@ -73,11 +75,52 @@ namespace Hohoemi.View
             }
         }
 
+        private void CyclicTimerTick_pic(object sender, EventArgs e)
+        {
+            lock (this)
+            {
+                foreach (HohoemiPictureBox pic in from Control c in Controls where c is HohoemiPictureBox select c)
+                {
+                    // 画面外に来たら消す
+                    if (pic.CheckRemove(Width, Height))
+                    {
+                        Controls.Remove(pic);
+                    }
+                    else
+                    {
+                        // そうじゃなかったら動かす
+                        HohoemiPictureBox newPictureBox = pic.Draw(Width, Height);
+                        if (newPictureBox != null)
+                        {
+                            Controls.Add(newPictureBox);
+
+                        }
+                    }
+                }
+            }
+        }
+
         public void AppendMessage(string user, string message)
         {
             // デバッグ中にフォーム閉じるとここで例外飛ぶけど、無視してください(◞‸◟)
             Invoke(new Action(() =>
             {
+                if (message.StartsWith(":"))
+                {
+                    try
+                    {
+                        string[] cmd = message.Substring(1).Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                        Type hohoemiPictureBox = Type.GetType(HohoemiPictureBoxType.ClassName[cmd[0]]);
+                        HohoemiPictureBox pic = (HohoemiPictureBox)Activator.CreateInstance(hohoemiPictureBox, cmd, Width, Height);
+                        Controls.Add(pic);
+                        pic.BringToFront();
+                        return;
+                    }
+                    catch
+                    {
+                        // コマンドが存在しない場合何もしない
+                    }
+                }
                 var comment = new Label()
                 {
                     Text = message,
@@ -123,6 +166,12 @@ namespace Hohoemi.View
             {
                 _cyclicTimer.Stop();
                 _cyclicTimer.Dispose();
+            }
+
+            if (_cyclicTimer_pic != null)
+            {
+                _cyclicTimer_pic.Stop();
+                _cyclicTimer_pic.Dispose();
             }
 
             _scrnVM.OnChangeCurrentScreen -= OnScreenChanged;

@@ -19,7 +19,7 @@ namespace HohoemiClientViewer.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -47,7 +47,7 @@ namespace HohoemiClientViewer.Properties {
         }
         
         /// <summary>
-        ///   厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+        ///   すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -76,6 +76,56 @@ namespace HohoemiClientViewer.Properties {
         public static System.Drawing.Bitmap commentOn {
             get {
                 object obj = ResourceManager.GetObject("commentOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Bitmap crab {
+            get {
+                object obj = ResourceManager.GetObject("crab", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Bitmap ogre {
+            get {
+                object obj = ResourceManager.GetObject("ogre", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Bitmap stone {
+            get {
+                object obj = ResourceManager.GetObject("stone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Bitmap trash {
+            get {
+                object obj = ResourceManager.GetObject("trash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Bitmap zoku {
+            get {
+                object obj = ResourceManager.GetObject("zoku", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

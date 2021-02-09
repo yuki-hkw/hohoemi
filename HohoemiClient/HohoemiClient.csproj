@@ -95,6 +95,16 @@
     <Compile Include="View\HohoemiCommentViewer.Designer.cs">
       <DependentUpon>HohoemiCommentViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\HohoemiFixedPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\HohoemiStraightPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\HohoemiThrowPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\HohoemiPictureBox.cs" />
     <EmbeddedResource Include="View\DisplaySetting.resx">
       <DependentUpon>DisplaySetting.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +161,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\zoku.png" />
+    <None Include="Resources\trash.png" />
+    <None Include="Resources\stone.png" />
+    <None Include="Resources\ogre.png" />
+    <None Include="Resources\crab.png" />
     <None Include="Resources\commentOff.bmp" />
     <None Include="Resources\commentOn.bmp" />
   </ItemGroup>

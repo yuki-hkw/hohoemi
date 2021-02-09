@@ -32,19 +32,22 @@ namespace Hohoemi.View
             // 画面が表示されてない間は死ぬからバッファリングだけ
             if (Visible)
             {
-                try
+                if (!comment.StartsWith(":"))
                 {
-                    Invoke(new Action(() =>
+                    try
                     {
-                        var item = new ListViewItem(new string[] { user, comment });
-                        _commentList.Items.Add(item);
-                        _commentList.EnsureVisible(_commentList.Items.Count - 1);
-                    }));
-                }
-                catch
-                {
-                    // GUIスレッドだしないと信じてるけど、FormClosing中にこっちの処理が刺さると死ぬ気がしたので念のため
-                    // 何もしない。
+                        Invoke(new Action(() =>
+                        {
+                            var item = new ListViewItem(new string[] { user, comment });
+                            _commentList.Items.Add(item);
+                            _commentList.EnsureVisible(_commentList.Items.Count - 1);
+                        }));
+                    }
+                    catch
+                    {
+                        // GUIスレッドだしないと信じてるけど、FormClosing中にこっちの処理が刺さると死ぬ気がしたので念のため
+                        // 何もしない。
+                    }
                 }
             }
         }
